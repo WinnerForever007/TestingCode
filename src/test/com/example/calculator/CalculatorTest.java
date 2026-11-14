@@ -98,5 +98,17 @@ public class CalculatorTest {
         assertEquals(3, div, "7 / 2 is wrong!");
     }
 
+    @Test
+    void annuityExample() {
+        String answer = calc.calculateAnnuity("22000", 7, "0.06", 1);
+        assertEquals("$184,664.43", answer);
+    }
+
+    @Test
+    void annuityPractice2() {
+        String answer = calc.calculateAnnuity("1200", 10, "0.08", 4);
+        assertEquals("$72,482.38", answer);
+    }
+
 
 }
