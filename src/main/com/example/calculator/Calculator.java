@@ -27,14 +27,15 @@ public class Calculator {
         return num1 / num2;
     }
 
-    public String calculateAnnuity(String R, int t, String r, int n) {
-        BigDecimal a = new BigDecimal(r).divide(new BigDecimal(n),
-                MathContext.DECIMAL128); // r/n
-        BigDecimal b = BigDecimal.ONE.add(a); // 1 + r/n
-        BigDecimal c = b.pow(n * t); // (1 + r/n)^(n * t)
+    public String calculateAnnuity(String deposit, int years,
+                                   String annualRate, int periodsPerYear) {
+        BigDecimal a = new BigDecimal(annualRate).divide(new BigDecimal(periodsPerYear),
+                MathContext.DECIMAL128); // annualRate/periodsPerYear
+        BigDecimal b = BigDecimal.ONE.add(a); // 1 + annualRate/periodsPerYear
+        BigDecimal c = b.pow(periodsPerYear * years); // (1 + annualRate/periodsPerYear)^(periodsPerYear * years)
         BigDecimal d = c.subtract(BigDecimal.ONE); // ... - 1
-        BigDecimal e = d.divide(a, MathContext.DECIMAL128); // ... / (r/n)
-        BigDecimal f = e.multiply(new BigDecimal(R)); // R * ...
+        BigDecimal e = d.divide(a, MathContext.DECIMAL128); // ... / (annualRate/periodsPerYear)
+        BigDecimal f = e.multiply(new BigDecimal(deposit)); // deposit * ...
 
         NumberFormat currencyInstance = NumberFormat.getCurrencyInstance(Locale.US);
         return currencyInstance.format(f);

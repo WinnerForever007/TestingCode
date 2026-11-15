@@ -1,6 +1,7 @@
 package com.example.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -108,6 +109,23 @@ public class CalculatorTest {
     void annuityPractice2() {
         String answer = calc.calculateAnnuity("1200", 10, "0.08", 4);
         assertEquals("$72,482.38", answer);
+    }
+
+    //Exercise 1
+    @Test
+    void annuityExercise1() {
+        String answer = calc.calculateAnnuity("500", 5, "0.06", 12);
+        assertEquals("$34,885.02", answer);
+    }
+
+    //Exercise 2
+    // java.lang.ArithmeticException: Non-terminating decimal expansion;
+    // no exact representable decimal result.
+    //That's without BigDecimal.DECIMAL128
+    @Test
+    void annuityExercise2() {
+        String answer = calc.calculateAnnuity("500", 5, "0.07", 12);
+        assertEquals("$35,796.45", answer);
     }
 
 
